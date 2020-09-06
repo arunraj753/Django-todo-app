@@ -1,0 +1,30 @@
+{% extends 'notebook/base.html' %}
+{% block content %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+		<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+
+						{% if user.is_authenticated %}
+							<h2>Hello {{user.username}}</h2>
+						{% else %}
+							<h2>Hello Guest</h2>
+						{% endif %}
+						<br>
+						<h4>This is a basic To-Do website designed on Django  and hosted on Heroku’s free cloud service.Create a new User , Create a new category and start adding Tasks. You can add mutliple categories as well and explore the Web App</h4>
+						<br>
+						<h4>Note: This is a DEMO Version and under Testing. Your contents will get deleted after a few days because of limited space.</h4>
+						<br>
+						<h4>Feedbacks are Welcome</h4>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

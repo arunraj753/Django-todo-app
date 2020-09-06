@@ -1,0 +1,47 @@
+{% extends 'notebook/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+				<hr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Task</th>
+							<th scope="col">Done</th>
+							<th scope="col">Update</th>
+							<th scope="col">Priority</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for tasks in tasks %}
+							<tr>
+								{% if tasks.task_status == True %}
+									<th><del>{{tasks.task}}</del></th>
+								{% else %}
+									<th>{{tasks.task}}</th>
+								{% endif %}
+								<td><button type='button' class="btn btn-danger"> <a href="{% url 'task-complete' pk=tasks.pk %}"style="color:White">Done</a>
+							</button></td>
+							<td><button type='button' class="btn btn-success"> <a href="{% url 'task-update' pk=tasks.pk %}"style="color:White">Update</a>
+						</button></td>
+						<td>	{{tasks.task_priority}}</td>
+					</tr>
+					{% endfor %}
+					
+				</tbody>
+			</table>
+
+			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'notebook/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-9">
+				<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Category</th>
+							<th scope="col">Rename</th>
+							<th scope="col">Delete </th>
+							<th scope="col">Delete Completed Tasks</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for elements in nav %}
+							<tr>							
+								<th>{{elements.category}} </th>
+								<td><button type='button' class="btn btn-secondary" > <a href="{% url 'category-update' pk=elements.pk %}"style="color:White">Rename</a></button> </td>
+								<td><button type='button' class="btn btn-danger" > <a href="{% url 'category-delete' pk=elements.pk %}"style="color:White">Delete</a></button> </td>
+								<td><button type='button' class="btn btn-info" > <a href="{% url 'delete-completed' pk=elements.pk %}"style="color:White">Delete Completed Tasks</a></button> </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

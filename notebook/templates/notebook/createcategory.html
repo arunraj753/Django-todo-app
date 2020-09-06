@@ -1,0 +1,23 @@
+{% extends 'notebook/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-6">	
+			<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+			<form method='POST'>
+				{% csrf_token %}
+				{{form|crispy}}
+				<button class="btn btn-primary" type="submit">Add Category
+				</button>
+			</form>
+		</div>
+	</div>	
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

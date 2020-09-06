@@ -1,0 +1,53 @@
+{% extends 'notebook/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-9">
+			<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+				<h3></h3>
+				<form method=POST>
+					{% csrf_token %}
+					{{form.task|as_crispy_field}}
+					{{form.task_priority|as_crispy_field}}
+					<button class="btn btn-primary" type="submit">Add
+					</button>
+				</form>
+				<hr>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Task</th>
+							<th scope="col">Done</th>
+							<th scope="col">Update</th>
+							<th scope="col">Priority</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for tasks in tasks %}
+
+							<tr>
+								{% if tasks.task_status == True %}
+									<th><del><a href="{% url 'task-update' pk=tasks.pk %} "style="color:Black">{{tasks.task}}</a></del></th>
+									<td><button type='button' class="btn btn-success" > <a href="{% url 'task-complete' pk=tasks.pk %}"style="color:White">Undo</a>
+								{% else %}
+									<th><a href="{% url 'task-update' pk=tasks.pk %} "style="color:Black">{{tasks.task}}</a> </th>
+									<td><button type='button' class="btn btn-success" > <a href="{% url 'task-complete' pk=tasks.pk %}"style="color:White">Mark as Complete</a>
+								{% endif %}
+							</button></td>
+							<td><button type='button' class="btn btn-danger"> <a href="{% url 'task-delete' pk=tasks.pk %}"style="color:White">Delete Task</a>
+						</button></td>
+						<td>	{{tasks.task_priority}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+	</div>
+</div>
+</div>
+{% endblock %}

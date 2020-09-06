@@ -1,0 +1,17 @@
+{% extends 'notebook/base.html' %}
+{% block content %}
+<div class="border-top pt-3">
+  <div class="card bg-info text-white">        
+          <div class="card-body">
+<form method = POST>
+	{% csrf_token %}
+	<p> </p>
+	<hr>
+	<h2>Sure to Delete</h2>
+	<button class="btn btn-outline-danger" type = "submit">Delete</button>
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}
