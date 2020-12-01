@@ -123,6 +123,13 @@ def profile(request):
 	context={'nav':nav}
 	return render(request,'notebook/profile.html',context)
 
+@login_required
+def CategoryChange(request,pk,id):
+	task = Tasks.objects.get(pk=pk)
+	category = MainCategory.objects.get(pk=id)
+	task.task_category = category
+	task.save()
+	return HttpResponse("Category Changed")
 
 
 

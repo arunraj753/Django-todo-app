@@ -1,38 +1,56 @@
 {% extends 'notebook/base.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-9">
-				<div class="border-top pt-3">
-  <div class="card bg-info text-white">        
-          <div class="card-body">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">Category</th>
-							<th scope="col">Rename</th>
-							<th scope="col">Delete </th>
-							<th scope="col">Delete Completed Tasks</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for elements in nav %}
-							<tr>							
-								<th>{{elements.category}} </th>
-								<td><button type='button' class="btn btn-secondary" > <a href="{% url 'category-update' pk=elements.pk %}"style="color:White">Rename</a></button> </td>
-								<td><button type='button' class="btn btn-danger" > <a href="{% url 'category-delete' pk=elements.pk %}"style="color:White">Delete</a></button> </td>
-								<td><button type='button' class="btn btn-info" > <a href="{% url 'delete-completed' pk=elements.pk %}"style="color:White">Delete Completed Tasks</a></button> </td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			
-		</div>
+<br>
+	<div class="row p-3 mb-2 bg-light">
+		{% for c in nav %}
+			<div class="col">
+				<div class="card" style="width: 14rem;">
+					<div id ="{{c.id}}" class="card-body text-center">
+						<h5 style="color:Blue" class="card-title text-center">{{c}}</h5>
+						{% for t in c.tasks_set.all %}
+							<p id ="{{t.id}}" value="{{t.id}}" class="item" draggable="true" class=" btn-outline-dark">{{t}}</p>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
 	</div>
-</div>
-</div>
-</div>
-</div>
+	<script>
+		
+		const items = document.querySelectorAll('.item')
+const cards = document.querySelectorAll('.card-body')
 
-{% endblock %}
+var dragtask
+var dragcard
+
+items.forEach(item => {
+	item.addEventListener('dragstart', () => {
+		item.classList.add('dragging')
+		})
+
+	item.addEventListener('dragend',() =>{
+
+		item.classList.remove('dragging')
+		address ='/task/'+ dragtask +'/edit/'+ dragcard
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", address, true);
+		xhttp.send();
+		})
+})
+
+cards.forEach(card =>
+{
+	card.addEventListener('dragover',e =>{
+	e.preventDefault()
+	const currentdrag = document.querySelector('.dragging')
+	card.appendChild(currentdrag)
+	dragcard = card.id
+	dragtask = currentdrag.id
+	console.log("Dragging")
+	})
+})
+
+
+	</script>
+	{% endblock %}>

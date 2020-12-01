@@ -4,20 +4,27 @@
 		<div class="row justify-content-center">
 			<div class="col-8">
 		<div class="border-top pt-3">
-  <div class="card bg-info text-white">        
-          <div class="card-body">
+  <div class="card ">        
+          <div class="card-body text-center">
 
 						{% if user.is_authenticated %}
-							<h2>Hello {{user.username}}</h2>
+							<h5>Hello {{user.username}},Welcome to NOTEBOOK:The To-Do Web App</h5>
+							<h5>Create a new User , Create a new category and start adding Tasks. You can add mutliple categories as well and explore the Web App</h5>
 						{% else %}
-							<h2>Hello Guest</h2>
+							<h5>Hello Guest, Welcome to NOTEBOOK:The To-Do Web App</h5>
+							<h5>Create a new User , Create a new category and start adding Tasks. You can add mutliple categories as well and explore the Web App</h5>
+						<div class="d-flex justify-content-between bd-highlight">
+							<div class="p-2 bd-highlight"><button type='button' class="btn btn-success" > <a href="{% url 'register' %}"style="color:White">Register</a></button></div>
+							<div class="p-2 bd-highlight"><button type='button' class="btn btn-primary" > <a href="{% url 'social:begin' 'facebook' %}"style="color:White">Login with Facebook</a></button></div>
+							<div class="p-2 bd-highlight"><button type='button' class="btn btn-danger" > <a href="{% url 'login' %}"style="color:White">Login </a></button></div>
+							
+						</div>
+						<div class="col">
 						{% endif %}
 						<br>
-						<h4>This is a basic To-Do website designed on Django  and hosted on Heroku’s free cloud service.Create a new User , Create a new category and start adding Tasks. You can add mutliple categories as well and explore the Web App</h4>
-						<br>
-						<h4>Note: This is a DEMO Version and under Testing. Your contents will get deleted after a few days because of limited space.</h4>
-						<br>
-						<h4>Feedbacks are Welcome</h4>
+						
+						
+				
 				
 				
 			</div>

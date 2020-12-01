@@ -12,7 +12,12 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
       <div class="container-fluid ">
-        <a class="navbar-brand" href="{% url 'home' %}">My NoteBook</a>
+        {% if user.username%}
+        <a class="navbar-brand" href="{% url 'home' %}">{{user.username}}</a>
+        {% else %}
+        <a class="navbar-brand" href="{% url 'index' %}">My NoteBook</a>
+        {% endif %}
+        
         <ul class="navbar-nav ">
           {% block body %}
           {% for elements in nav %}

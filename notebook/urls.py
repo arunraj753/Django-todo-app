@@ -14,4 +14,5 @@ path('tasks/delete/<int:pk>',views.Task_Delete,name='task-delete'),
 path('tasks/complete/<int:pk>',views.TaskComplete,name='task-complete'),
 path('profile',views.profile,name='profile'),
 path('category/deletecompleted/<int:pk>',views.Delete_Completed,name='delete-completed'),
+path('task/<int:pk>/edit/<int:id>',views.CategoryChange,name='category-change'),
 ]
